@@ -6,5 +6,6 @@
 
 char * resolveInput(char *input) {
     char *result;
+    printf("hello, world");
 
 }

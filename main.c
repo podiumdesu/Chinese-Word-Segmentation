@@ -1,16 +1,20 @@
 #include "mystd.h"
 #include "mylib.h"
+#include "trieTree.h"
 
 #define CHUNK 1024
 int main() {
     char input[10000], ch, result[100][10000];
     int inputChoice;
+    int maxLengthInDict;
     int op = 1;
     FILE *fp;
     size_t nread;
     int fgets_count = 0;
     while (op) {
-        printf("请输入1 或者 2， 0退出");  //从文件导入或是直接读入，0退出
+        maxLengthInDict = maxLength("./reference/test.txt");
+        printf("MAX LENGTH IS %d\n", maxLengthInDict);
+        printf("请输入1 或者 2， 0退出\n");  //从文件导入或是直接读入，0退出
         scanf("%d", &inputChoice);
         if (inputChoice == 1) {    //处理文件导入
 
