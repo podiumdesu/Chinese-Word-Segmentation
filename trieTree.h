@@ -14,7 +14,6 @@ typedef int status;
 #define TRUE 1
 #define FALSE 0
 struct TrieNode{
-//    struct trieNode * front;
     struct TrieNode ** child;
     int childNum;
     bool isWord;
@@ -22,10 +21,13 @@ struct TrieNode{
 };
 typedef struct TrieNode *Node;
 
-//typedef struct {
-//    Node root;
-//} TrieTree, *Tree;
 void buildTrieTree(Node root, char * string);
 Node createTrieTreeRoot();
 Node createTrieTree(char * string);
+char * charcpy(char * str);
+
+void writeTofile(Node root, char * fileName);
+
+
+int findNode (Node root, char * string);
 #endif //C_DESIGN_TRIETREE_H
