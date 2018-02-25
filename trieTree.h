@@ -18,13 +18,14 @@ struct TrieNode{
     struct TrieNode ** child;
     int childNum;
     bool isWord;
-    char word[3];
+    char word[4];
 };
 typedef struct TrieNode *Node;
 
 //typedef struct {
 //    Node root;
 //} TrieTree, *Tree;
-
+void buildTrieTree(Node root, char * string);
+Node createTrieTreeRoot();
 Node createTrieTree(char * string);
 #endif //C_DESIGN_TRIETREE_H

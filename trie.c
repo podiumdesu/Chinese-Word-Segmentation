@@ -26,9 +26,10 @@ Node initTrieTreeNode(char * word, bool isWord) {
 }
 
 Node buildTreeNode(Node root, char *string) {
-    bool isWord = (*(string + 1) == '\n' || *(string + 1) == '\0') ? true : false;
-    char tmpStr[3];
+    bool isWord = (*(string + 3) == '\n' || *(string + 3) == '\0') ? true : false;
+    char tmpStr[4];
     strncpy(tmpStr, string, 3);
+    tmpStr[3] = '\0';
     Node node = initTrieTreeNode(tmpStr, isWord);
     if (root->childNum == 0)
         root->child = (Node * )malloc(sizeof(struct TrieNode));
@@ -40,20 +41,32 @@ Node buildTreeNode(Node root, char *string) {
 }
 
 void buildTrieTree(Node root, char * string) {
-    while(*string != '\0') {
+    Node tempNode;
+//    tempNode = malloc(sizeof(struct TrieNode));
+    tempNode = root;
+    while((*string != '\0') && (*string != '\n'))  {    // whether it is a whole word
         Node child;
         bool found = false;
-        for (int i = 0; i < root->childNum; i++) {
-            if (root->child[i] && *(root->child[i]->word) == *string) {
+        for (int i = 0; i < tempNode->childNum; i++) {
+            if (tempNode->child[i] && (strcmp(tempNode->child[i]->word,string) == 0)) {
                 found = true;
-                child = root->child[i];
+                child = tempNode->child[i];
             }
         }
-        child = found ? child : buildTreeNode(root, string);
-        root = child;
+        child = found ? child : buildTreeNode(tempNode, string);
+        tempNode = child;
         string += 3;
     }
+    // if string is done;
+//    tempNode->child = NULL;
 }
+
+Node createTrieTreeRoot() {
+    Node root = initTrieTreeNode(" ", false);
+    return root;
+}
+
+
 Node createTrieTree(char * string) {
     Node doomRoot = initTrieTreeNode(" ", false);
     buildTrieTree(doomRoot, string);

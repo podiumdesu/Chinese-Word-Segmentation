@@ -27,15 +27,30 @@ int main (void) {
     char result[1000];
     FILE *fp;
     Node root;
+    Node tempNode;
+    tempNode = root;
+    root = createTrieTreeRoot();
     if ((fp = fopen("/Users/petnakanojo/Documents/github/c_design/test.txt", "r")) == NULL) {
         printf("not open\n");
     } else {
         while(fgets(result, 1000, fp) != NULL) {
             if (result[0] != '\n') {
-                printf("the word is %s\n", result);
-                root = createTrieTree(result);
+                buildTrieTree(root, result);
+//                tempNode = createTrieTree(result);
             }
         }
+//        int cnt = 0;
+//        char * str;
+//        while(fgets(result, 1000, fp) != NULL) {
+//            if (result[0] != '\n') {
+//                if (cnt == 0)
+//                    str = malloc(sizeof(char) * (strlen(result) + 1));
+//                else
+//                    str = realloc(str, sizeof(char) * (strlen(str) + strlen(result) + 1));
+//                strcat(str, result);
+//                cnt++;
+//            }
+//        }
         int i = root->childNum;
         printf("%d", i);
         for (int j = 0; j < root->childNum; j++) {
