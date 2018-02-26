@@ -8,12 +8,13 @@ int maxLength(char *fileName) {
     int templen;
     FILE *fp;
     if ((fp = fopen(fileName, "r")) == NULL) {
-        printf("not open\n");
+        printf("FILE: %s not open\n", fileName);
     } else {
         while(fgets(result, 10000, fp) != NULL) {
             if (result[0] != '\n') {
                 templen = (int) ((strlen(result) - 1) / 3);
-                printf("%d\n", templen);
+                // todo delete
+                // printf("%d\n", templen);
                 if (templen > maxlength) maxlength = templen;
             }
         }

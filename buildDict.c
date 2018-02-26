@@ -20,16 +20,16 @@ void buildDict(Node root, char * fileName) {
         }
     }
     //todo delete test
-    int test = 1;
-    if (test) {
-        int i = root->childNum;
-        printf("%d\n", i);
-        for (int j = 0; j < root->childNum; j++) {
-            printf("wrong wrong %s\n", root->child[j]->child[0]->word);
-        }
-        printf("this is a test: %d\n", root->child[0]->child[0]->isWord);
-    }
+//    int test = 1;
+//    if (test) {
+//        int i = root->childNum;
+//        printf("%d\n", i);
+//        for (int j = 0; j < root->childNum; j++) {
+//            printf("wrong wrong %s\n", root->child[j]->child[0]->word);
+//        }
+//        printf("this is a test: %d\n", root->child[0]->child[0]->isWord);
+//    }
     time_t end = clock();
-    printf("Building time costs: %gs", (double)(end - start) / CLOCKS_PER_SEC);
+    printf("Building time costs: %gs\n", (double)(end - start) / CLOCKS_PER_SEC);
 }
 

@@ -17,15 +17,6 @@ int maxLength(char * fileName);
 
 char * resolveInput(char *);
 
-/*************************************
- Function: buildDict
- Description: read the dict.txt and build the trie tree
- Input:
-        root: createTrieTreeRoot()
-        fileName: name of dict
- Return:
-        void
-***************************************/
-void buildDict(Node root, char * fileName);
+
 
 #endif //C_DESIGN_MYLIB_H

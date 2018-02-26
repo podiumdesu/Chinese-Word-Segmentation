@@ -21,6 +21,17 @@ struct TrieNode{
 };
 typedef struct TrieNode *Node;
 
+/*************************************
+ Function: buildDict
+ Description: read the dict.txt and build the trie tree
+ Input:
+        root: createTrieTreeRoot()
+        fileName: name of dict
+ Return:
+        void
+***************************************/
+void buildDict(Node root, char * fileName);
+
 void buildTrieTree(Node root, char * string);
 Node createTrieTreeRoot();
 Node createTrieTree(char * string);
@@ -29,5 +40,8 @@ char * charcpy(char * str);
 void writeTofile(Node root, char * fileName);
 
 
-int findNode (Node root, char * string);
+bool findNode (Node root, char * string);
+
+void addNewNode (Node root, char * string, char * fileName);
+void removeNode (Node root, char * string, char * fileName);
 #endif //C_DESIGN_TRIETREE_H
