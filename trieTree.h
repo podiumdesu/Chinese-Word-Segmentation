@@ -28,20 +28,53 @@ typedef struct TrieNode *Node;
         root: createTrieTreeRoot()
         fileName: name of dict
  Return:
-        void
+        status: WRONG / OK
 ***************************************/
-void buildDict(Node root, char * fileName);
+status buildDict(Node root, char * fileName);
 
 void buildTrieTree(Node root, char * string);
 Node createTrieTreeRoot();
 Node createTrieTree(char * string);
 char * charcpy(char * str);
 
-void writeTofile(Node root, char * fileName);
-
-
+//void writeTofile(Node root, char * fileName);
+/*************************************
+ Function: findNode
+ Description:
+ Input:
+        root: Trie Tree Root
+        string: new word
+        fileName: dict Name
+ Return:
+        void
+ testFile: testFile/testForFindNode.c
+***************************************/
 bool findNode (Node root, char * string);
 
+/*************************************
+ Function: addNewNode
+ Description:
+ Input:
+        root: Trie Tree Root
+        string: new word
+        fileName: dict Name
+ Return:
+        void
+ testFile: testFile/testForAddNewNode.c
+***************************************/
 void addNewNode (Node root, char * string, char * fileName);
+
+/*************************************
+ Function: removeNode
+ Description:
+ Input:
+        root: Trie Tree Root
+        string: new word
+        fileName: dict Name
+ Return:
+        void
+ testFile: testFile/testForRemoveNode.c
+***************************************/
 void removeNode (Node root, char * string, char * fileName);
+
 #endif //C_DESIGN_TRIETREE_H

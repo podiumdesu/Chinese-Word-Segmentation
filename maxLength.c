@@ -1,7 +1,7 @@
 //
 // Created by PetnaKanojo on 14/02/2018.
 //
-#include "../mystd.h"
+#include "mystd.h"
 int maxLength(char *fileName) {
     char result[1000];
     int maxlength = 0;

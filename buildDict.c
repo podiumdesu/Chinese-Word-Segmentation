@@ -7,29 +7,22 @@
 //function in trie.c
 
 //root = createTrieTreeRoot();
-void buildDict(Node root, char * fileName) {
+status buildDict(Node root, char * fileName) {
     char result[3000];
     FILE *fp;
     time_t start = clock();
     if ((fp = fopen(fileName, "r")) == NULL) {
-        printf("%s not open!\n", fileName);
+        //printf("%s not open!\n", fileName);
+        return WRONG;
     } else {
+        printf("读取词典成功！正在建立TRIE树......\n");
         while (fgets(result, 3000, fp) != NULL) {
             if (result[0] != '\n')
                 buildTrieTree(root, result);
         }
     }
-    //todo delete test
-//    int test = 1;
-//    if (test) {
-//        int i = root->childNum;
-//        printf("%d\n", i);
-//        for (int j = 0; j < root->childNum; j++) {
-//            printf("wrong wrong %s\n", root->child[j]->child[0]->word);
-//        }
-//        printf("this is a test: %d\n", root->child[0]->child[0]->isWord);
-//    }
     time_t end = clock();
     printf("Building time costs: %gs\n", (double)(end - start) / CLOCKS_PER_SEC);
+    return OK;
 }
 
