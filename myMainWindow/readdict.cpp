@@ -26,8 +26,6 @@ void readDict::on_readDict_ok_btn_clicked()
         emit sendDictPath(c_str2);
         str1.append(" 读取成功，正在建立Trie树...");
         this->hide();
-        QMessageBox::information(this, tr("Information"), str1);
-        QMessageBox::information(this, tr("Information"), "建立成功！");
      }
 }
 

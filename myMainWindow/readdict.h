@@ -21,7 +21,7 @@ private slots:
     void on_readDict_cancel_btn_clicked();
 
 signals:
-    void sendDictPath(char *str);
+    void sendDictPath(char *);
 
 private:
     Ui::readDict *ui;

@@ -32,8 +32,9 @@ private slots:
 
     void getDictPath(char *);
     void getAddNewWord(char *);
-    void getChangeWord(char * oldWord, char * newWord);
-
+    void getChangeWord(char *, char *);
+    void getRemoveWord(char *);
+    void getReadFromFile(char *, int, char *);
 
 private:
    // void on_actionaddNewWord_triggered();

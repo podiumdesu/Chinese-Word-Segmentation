@@ -25,7 +25,7 @@ void addNewWord::on_addNewWord_ok_btn_clicked()
     if (str1.length() == 0) {
         ui->warning_info->setText("请正确输入词条！");
     } else {
-        QByteArray ba = str1.toLatin1();
+        QByteArray ba = str1.toUtf8();
         char * c_str2 = ba.data();
         emit sendAddNewWord(c_str2);
         ui->warning_info->setText("");

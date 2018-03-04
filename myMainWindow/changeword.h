@@ -18,6 +18,8 @@ public:
 private slots:
     void on_changeWord_ok_btn_clicked();
 
+    void on_changeWord_cancel_btn_clicked();
+
 signals:
     void sendChangeWord(char * oldWord, char * newWord);
 

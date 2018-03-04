@@ -13,17 +13,17 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="remove_cancel_btn">
+  <widget class="QPushButton" name="remove_ok_btn">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>250</x>
      <y>200</y>
      <width>113</width>
      <height>32</height>
     </rect>
    </property>
    <property name="text">
-    <string>cancel</string>
+    <string>OK</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -51,10 +51,10 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="remove_ok_btn">
+  <widget class="QPushButton" name="remove_cancel_btn">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>140</x>
      <y>200</y>
      <width>113</width>
      <height>32</height>
@@ -64,17 +64,20 @@
     <string notr="true"/>
    </property>
    <property name="text">
-    <string>OK</string>
+    <string>cancel</string>
    </property>
   </widget>
   <widget class="QLabel" name="warning_info">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>150</y>
+     <x>50</x>
+     <y>140</y>
      <width>181</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: red</string>
    </property>
    <property name="text">
     <string/>

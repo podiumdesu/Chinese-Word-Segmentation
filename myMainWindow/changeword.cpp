@@ -23,13 +23,17 @@ void changeWord::on_changeWord_ok_btn_clicked()
     if (oldWord.length() == 0 || newWord.length() == 0) {
         ui->warning_info->setText("请正确输入词条！");
     } else {
-        QByteArray oldWordStr = oldWord.toLatin1();
-        QByteArray newWordStr = newWord.toLatin1();
+        QByteArray oldWordStr = oldWord.toUtf8();
+        QByteArray newWordStr = newWord.toUtf8();
         char * oldStr = oldWordStr.data();
         char * newStr = newWordStr.data();
-        qDebug() << oldWord;
         emit sendChangeWord(oldStr, newStr);
         ui->warning_info->setText("");
-        //this->hide();
+        this->hide();
     }
+}
+
+void changeWord::on_changeWord_cancel_btn_clicked()
+{
+    this->hide();
 }

@@ -61,10 +61,23 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: red</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>OK</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>280</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>欢迎使用中文分词系统！</string>
    </property>
   </widget>
  </widget>

@@ -44,7 +44,8 @@ HEADERS += \
     displaydict.h \
     readfromfile.h \
     readfrominput.h \
-    test.h
+    test.h \
+    mymain.h
 
 FORMS += \
         mainwindow.ui \
