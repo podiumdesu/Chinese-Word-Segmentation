@@ -16,7 +16,12 @@ public:
     ~addNewWord();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_addNewWord_ok_btn_clicked();
+
+    void on_addNewWord_cancel_btn_clicked();
+
+signals:
+    void sendAddNewWord(char * str);
 
 private:
     Ui::addNewWord *ui;

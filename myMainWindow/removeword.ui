@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>cancle</string>
+    <string>cancel</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -61,10 +61,23 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: red</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>OK</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="warning_info">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>150</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

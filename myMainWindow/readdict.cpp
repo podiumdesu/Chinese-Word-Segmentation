@@ -2,6 +2,7 @@
 #include "ui_readdict.h"
 #include <QMessageBox>
 #include <QTime>
+#include <QDebug>
 readDict::readDict(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::readDict)
@@ -13,16 +14,25 @@ readDict::~readDict()
 {
     delete ui;
 }
+
 void readDict::on_readDict_ok_btn_clicked()
 {
-//    QString str;
-//    QByteArray byteArray=str.toLocal8Bit ();
-//    char *c=byteArray.data();
      QString str1 = ui->dictPath->text();
-     QByteArray ba = str1.toLatin1();
-     char *c_str2 = ba.data();
-    emit sendDictPath(str1);
-    this->hide();
-    QMessageBox::information(this, tr("Information"), tr("读取成功，正在建立Trie树..."));
+     if (str1.length() == 0) {
+         ui->warning_info->setText("请正确输入路径！");
+     } else {
+        QByteArray ba = str1.toLatin1();
+        char *c_str2 = ba.data();
+        emit sendDictPath(c_str2);
+        str1.append(" 读取成功，正在建立Trie树...");
+        this->hide();
+        QMessageBox::information(this, tr("Information"), str1);
+        QMessageBox::information(this, tr("Information"), "建立成功！");
+     }
+}
 
+
+void readDict::on_readDict_cancel_btn_clicked()
+{
+    this->hide();
 }

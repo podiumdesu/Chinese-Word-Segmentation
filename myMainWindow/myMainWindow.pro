@@ -32,7 +32,8 @@ SOURCES += \
     readdict.cpp \
     displaydict.cpp \
     readfromfile.cpp \
-    readfrominput.cpp
+    readfrominput.cpp \
+    test.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     readdict.h \
     displaydict.h \
     readfromfile.h \
-    readfrominput.h
+    readfrominput.h \
+    test.h
 
 FORMS += \
         mainwindow.ui \

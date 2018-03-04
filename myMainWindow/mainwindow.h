@@ -30,7 +30,10 @@ private slots:
 
     void on_renewDict_cancel_btn_clicked();
 
-    void getDictPath(char * value);
+    void getDictPath(char *);
+    void getAddNewWord(char *);
+    void getChangeWord(char * oldWord, char * newWord);
+
 
 private:
    // void on_actionaddNewWord_triggered();

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="changeWord_cancel_btn">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>cancle</string>
+    <string>cancel</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -47,11 +47,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_addNewWord"/>
+     <widget class="QLineEdit" name="lineEdit_changeWord"/>
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="changeWord_ok_btn">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -61,7 +61,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: red</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>OK</string>
@@ -88,9 +88,26 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_addNewWord_2"/>
+     <widget class="QLineEdit" name="lineEdit_changeWord_2"/>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="warning_info">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>180</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:red
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <resources/>

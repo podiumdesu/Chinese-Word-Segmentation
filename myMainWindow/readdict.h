@@ -18,8 +18,10 @@ public:
 private slots:
     void on_readDict_ok_btn_clicked();
 
+    void on_readDict_cancel_btn_clicked();
+
 signals:
-    void sendDictPath(QString);
+    void sendDictPath(char *str);
 
 private:
     Ui::readDict *ui;

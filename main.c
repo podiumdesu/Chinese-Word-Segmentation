@@ -26,7 +26,7 @@ int main() {
     FILE *fp;
     int fgets_count = 0;
 
-    maxLengthInDict = maxLength(testfile);
+
     //printf("MAX LENGTH IS %d\n", maxLengthInDict);
 
     Node root = createTrieTreeRoot();
@@ -44,6 +44,7 @@ int main() {
                 scanf("%s", dictFile);
             };
             printf("总共支节点：%d\n", root->childNum);
+            maxLengthInDict = maxLength(dictFile);
             //printf("this is a test: %d\n", root->child[0]->child[0]->isWord);
             readNewDict = 0;
             done = 1;

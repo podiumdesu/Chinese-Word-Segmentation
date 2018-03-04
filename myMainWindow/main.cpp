@@ -3,12 +3,20 @@
 #include <QPushButton>
 
 
+// my function head files
+#include "mylib.h"
+#include "mystd.h"
+#include "trieTree.h"
+
+
 #include "addnewword.h"
 #include "mainwindow.h"
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     MainWindow mainWin;
+    //Node root = createTrieTreeRoot();
 
     //addNewWord addNewWord;
     mainWin.initView();

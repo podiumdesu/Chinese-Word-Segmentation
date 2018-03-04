@@ -1,6 +1,15 @@
- #include <QMessageBox>
+#include <QMessageBox>
 #include <QAction>
 #include <QMenuBar>
+#include <QDebug>
+#include <qdebug.h>
+// my function head files
+#include "mylib.h"
+#include "mystd.h"
+#include "trieTree.h"
+#include "test.h"
+
+// ui head files
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "addnewword.h"
@@ -10,6 +19,9 @@
 #include "displaydict.h"
 #include "readfromfile.h"
 #include "readfrominput.h"
+
+//Node root = createTrieTreeRoot();
+char dictFile[1000];
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,10 +36,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actiondisplayDict, SIGNAL(triggered()), this, SLOT(actionDisplayDict()));
     connect(ui->actionreadFromFile, SIGNAL(triggered()), this, SLOT(actionReadFromFile()));
     connect(ui->actionreadFromInput, SIGNAL(triggered()), this, SLOT(actionReadFromInput()));
-    QWidget *wdg_readDict = new readDict;
-    //MyDialog *dlg = new MyDialog(this);
-    // 将对话框中的自定义信号与主界面中的自定义槽进行关联
-    connect(wdg_readDict,SIGNAL(sendDictPath(char *)),this,SLOT(getDictPath(char*)));
+//    QWidget *wdg_readDict = new readDict;
+//    //MyDialog *dlg = new MyDialog(this);
+//    // 将对话框中的自定义信号与主界面中的自定义槽进行关联
+//    connect(wdg_readDict,SIGNAL(sendDictPath(char *)),this,SLOT(getDictPath(char*)));
 }
 
 void MainWindow::initView()
@@ -47,10 +59,7 @@ void MainWindow::initView()
     connect(ui->actiondisplayDict, SIGNAL(triggered()), this, SLOT(actionDisplayDict()));
     connect(ui->actionreadFromFile, SIGNAL(triggered()), this, SLOT(actionReadFromFile()));
     connect(ui->actionreadFromInput, SIGNAL(triggered()), this, SLOT(actionReadFromInput()));
-    QWidget *wdg_readDict = new readDict;
-    //MyDialog *dlg = new MyDialog(this);
-    // 将对话框中的自定义信号与主界面中的自定义槽进行关联
-    connect(wdg_readDict,SIGNAL(sendDictPath(char *)),this,SLOT(getDictPath(char*)));
+
 }
 
 MainWindow::~MainWindow()
@@ -60,7 +69,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::actionAddNewWord() {
     QWidget *wdg_addNewWord = new addNewWord;
-
+    connect(wdg_addNewWord,SIGNAL(sendAddNewWord(char *)),this,SLOT(getAddNewWord(char*)));
     wdg_addNewWord->show();
 }
 void MainWindow::actionRemoveWord(){
@@ -70,6 +79,10 @@ void MainWindow::actionRemoveWord(){
 }
 void MainWindow::actionChangeWord(){
     QWidget *wdg_changeWord = new changeWord;
+    qDebug() << tr("dddd");
+    connect(wdg_changeWord, SIGNAL(sendChangeWord(char * oldWord, char * newWord)), this , SLOT(getChangeWord(char * oldWord, char * newWord)));
+    qDebug() << tr("dddd");
+
     wdg_changeWord->show();
 }
 
@@ -77,7 +90,7 @@ void MainWindow::actionReadDict(){
     QWidget *wdg_readDict = new readDict;
     //MyDialog *dlg = new MyDialog(this);
     // 将对话框中的自定义信号与主界面中的自定义槽进行关联
-    //connect(wdg_readDict,SIGNAL(sendDictPath(char *)),this,SLOT(getDictPath(char*)));
+    connect(wdg_readDict,SIGNAL(sendDictPath(char *str)),this,SLOT(getDictPath(char * str)));
     wdg_readDict->show();
 }
 
@@ -100,17 +113,33 @@ void MainWindow::on_test_clicked()
     wdg->show();
     ui->renewDict->hide();
     ui->update_info->setText(tr("更新词典完毕"));
-    //hide();//this will disappear main window
-    //QMessageBox::information(this, tr("Information"), tr("open"));
-
 }
 
-//void MainWindow::on_actionaddNewWord_triggered()
-//{
-//    QMessageBox::information(this, tr("Information"), tr("open"));
+// menu 1 item 1    add new word
+void MainWindow::getAddNewWord(char * newWord) {
+    QString qString;
+    qString.append(newWord);
+    qDebug() << qString;
+}
 
-//}
+void MainWindow::getChangeWord(char * oldWord, char * newWord) {
+    QString oldQstring, newQstring;
+    qDebug() << tr(oldWord);
+    qDebug() << tr(newWord);
+}
 
+void MainWindow::getDictPath(char *value) {
+    strcpy(dictFile, value);
+    QString qString;
+    qString.append(value);
+    qDebug()<<tr(value);
+    qDebug()<<tr(dictFile);
+
+    // qDebug()<<tr(str);
+    ui->renewDict->hide();
+    ui->update_info->show();
+    ui->update_info->setText(tr("正在更新......"));
+}
 
 void MainWindow::on_renewDict_ok_btn_clicked()
 {
@@ -124,3 +153,5 @@ void MainWindow::on_renewDict_cancel_btn_clicked()
     ui->renewDict->hide();
     ui->update_info->hide();
 }
+
+
