@@ -80,7 +80,7 @@ void MainWindow::actionRemoveWord(){
 void MainWindow::actionChangeWord(){
     QWidget *wdg_changeWord = new changeWord;
     qDebug() << tr("dddd");
-    connect(wdg_changeWord, SIGNAL(sendChangeWord(char * oldWord, char * newWord)), this , SLOT(getChangeWord(char * oldWord, char * newWord)));
+    connect(wdg_changeWord, SIGNAL(sendChangeWord(char *, char *)), this , SLOT(getChangeWord(char *, char *)));
     qDebug() << tr("dddd");
 
     wdg_changeWord->show();

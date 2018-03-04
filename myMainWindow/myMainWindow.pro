@@ -60,8 +60,3 @@ RESOURCES += \
     actions/imgs.qrc \
     actions/myimages.qrc
 
-LIBS += -stdlib=libc++
-QMAKE_CXXFLAGS += -stdlib=libc++
-QMAKE_CXXFLAGS += -std=c++11
-QMAKE_CXXFLAGS += -mmacosx-version-min=10.13
-QMAKE_LFLAGS += -mmacosx-version-min=10.13
