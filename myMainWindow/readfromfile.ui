@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>434</width>
-    <height>302</height>
+    <width>426</width>
+    <height>293</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>200</y>
+     <y>180</y>
      <width>113</width>
      <height>32</height>
     </rect>
@@ -55,7 +55,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>200</y>
+     <y>180</y>
      <width>113</width>
      <height>32</height>
     </rect>
@@ -65,19 +65,6 @@
    </property>
    <property name="text">
     <string>cancel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>280</y>
-     <width>141</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>欢迎使用中文分词系统！</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="checkBox">
@@ -117,6 +104,22 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>270</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;.SF NS Text&quot;;</string>
+   </property>
+   <property name="text">
+    <string>欢迎使用中文分词系统！</string>
    </property>
   </widget>
  </widget>

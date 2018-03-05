@@ -6,27 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>858</width>
-    <height>559</height>
+    <width>872</width>
+    <height>561</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="test">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>120</y>
-      <width>501</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>this is a test</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="when_dict_update" native="true">
     <property name="enabled">
      <bool>true</bool>
@@ -116,13 +103,34 @@
      </property>
     </widget>
    </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>831</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent; 
+font: 75 15pt &quot;Gill Sans&quot;;</string>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Gill Sans'; font-size:15pt; font-weight:72; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Helvetica Neue'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>858</width>
+     <width>872</width>
      <height>22</height>
     </rect>
    </property>
@@ -143,7 +151,6 @@
     </property>
     <addaction name="actionreadDict"/>
     <addaction name="separator"/>
-    <addaction name="actiondisplayDict"/>
    </widget>
    <widget class="QMenu" name="menu_resolve">
     <property name="title">
@@ -184,6 +191,9 @@
    <property name="text">
     <string>导入文件</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F</string>
+   </property>
   </action>
   <action name="actionremoveWord">
    <property name="text">
@@ -211,6 +221,9 @@
    <property name="text">
     <string>手动输入</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+H</string>
+   </property>
   </action>
   <action name="actionreadDict">
    <property name="text">
@@ -221,14 +234,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+O</string>
-   </property>
-  </action>
-  <action name="actiondisplayDict">
-   <property name="text">
-    <string>显示词典</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+P</string>
    </property>
   </action>
  </widget>

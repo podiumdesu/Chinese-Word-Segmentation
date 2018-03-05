@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>392</width>
-    <height>220</height>
+    <width>400</width>
+    <height>236</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>236</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>400</width>
+    <height>236</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -23,8 +35,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>OK</string>
@@ -88,11 +99,14 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>200</y>
-     <width>141</width>
+     <x>140</x>
+     <y>210</y>
+     <width>131</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;.SF NS Text&quot;;</string>
    </property>
    <property name="text">
     <string>欢迎使用中文分词系统！</string>

@@ -65,37 +65,27 @@ double buildDict(Node root, char * fileName) {
 
 int matchStringForMAX(Node root, char * resolveString, int length, int saveOrNot, char * saveFile) {   //最多传入maxLength个汉字->resolveString
     char tempStr[100];
-    std::ofstream out;
-    out.open(saveFile, std::ios::app);
-//    if (saveOrNot) {
-//        fp = fopen(saveFile, "a");
-//    }
-    out.close();
-    qDebug() << "outclose";
+    std::FILE *fp;
+    if (saveOrNot) {
+        fp = std::fopen(saveFile, "a");
+    }
     my_strncpy(tempStr, resolveString, length);  //length目前有效长度
-    qDebug() << "my_strncpy close";
     while ((*tempStr != '\n') || (*tempStr != '\0') || (*tempStr != '\r')) {  //
         if (findNode(root, tempStr)) {
             //resolveString += letterLength(tempStr) * WORDCHAR;    //已经匹配完的剔除，对于剩下的字符串继续
             //printf("%s|", tempStr);
             if (saveOrNot) {
-                if (out.is_open()) {
-                    out << tempStr;
-                    out << "|";
-                    out.close();
-                }
+                qDebug() << tempStr;
+                std::fprintf(fp, "%s|", tempStr);
+                std::fclose(fp);
             }
             return (letterLength(tempStr) + 1);  //返回现在完成的长度
         } else { //如果目前tempStr不能匹配
             if (length == 1) { //如果现在长度为1，词典匹配失败，直接输出
                 if (saveOrNot) {
-                    if (out.is_open()) {
-                        out << tempStr;
-                        out << "|";
-                        out.close();
-                    }
-//                    fprintf(fp, "%s|", tempStr);
-//                    fclose(fp);
+                    qDebug() << tempStr;
+                    std::fprintf(fp, "%s|", tempStr);
+                    std::fclose(fp);
                 }
                 //printf("%s|", tempStr);
                 return 1;
@@ -109,8 +99,7 @@ int matchStringForMAX(Node root, char * resolveString, int length, int saveOrNot
 
 void matchUserInput(Node root, char * string, int maxLength, int fileOrNot, char * saveFile) {
     int removeLength = 0;
-
-    std::ofstream out(saveFile);
+    std::FILE *tempFp;
     char temp[10];
     do {
         if (letterLength(string) > maxLength) {
@@ -122,21 +111,13 @@ void matchUserInput(Node root, char * string, int maxLength, int fileOrNot, char
         //printf("now you need to resolve %s\n",string);
     } while ((*string != '\n') && (*string != '\0') && (*string != '\r'));
     if (fileOrNot) {
-        //tempFp = fopen(saveFile, "a");
+        tempFp = std::fopen(saveFile, "a");
         strcpy(temp, "\n");
-        qDebug() << "dddtemp";
-        if (out.is_open())
-       {
-            out << temp;
-            out.close();
-        }
-        //fprintf(tempFp, "%s", temp);
-        //fclose(tempFp);
+        std::fprintf(tempFp, "%s", temp);
+        fclose(tempFp);
     }
     //printf("\n");
 }
-
-//////
 int maxLength(char *fileName) {
     char result[1000];
     int maxlength = 0;
@@ -376,11 +357,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     //remove(ui->renewDict);
     ui->renewDict->hide();
+    ui->textEdit->hide();
     connect(ui->actionaddNewWord, SIGNAL(triggered()), this, SLOT(actionAddNewWord()));
     connect(ui->actionremoveWord, SIGNAL(triggered()), this, SLOT(actionRemoveWord()));
     connect(ui->actionchangeWord, SIGNAL(triggered()), this, SLOT(actionChangeWord()));
     connect(ui->actionreadDict, SIGNAL(triggered()), this, SLOT(actionReadDict()));
-    connect(ui->actiondisplayDict, SIGNAL(triggered()), this, SLOT(actionDisplayDict()));
+    //connect(ui->actiondisplayDict, SIGNAL(triggered()), this, SLOT(actionDisplayDict()));
     connect(ui->actionreadFromFile, SIGNAL(triggered()), this, SLOT(actionReadFromFile()));
     connect(ui->actionreadFromInput, SIGNAL(triggered()), this, SLOT(actionReadFromInput()));
 }
@@ -392,14 +374,17 @@ void MainWindow::initView()
     setWindowTitle(tr("欢迎使用中文分词系统"));
     ui->renewDict->setHidden(true);   // use `setHidden` to hide components
     ui->update_info->setHidden(true);
+
     ui->setupUi(this);
+    ui->textEdit->hide();
+
     mainWin->show();
     // add signals and slots
     connect(ui->actionaddNewWord, SIGNAL(triggered()), this, SLOT(actionAddNewWord()));
     connect(ui->actionremoveWord, SIGNAL(triggered()), this, SLOT(actionRemoveWord()));
     connect(ui->actionchangeWord, SIGNAL(triggered()), this, SLOT(actionChangeWord()));
     connect(ui->actionreadDict, SIGNAL(triggered()), this, SLOT(actionReadDict()));
-    connect(ui->actiondisplayDict, SIGNAL(triggered()), this, SLOT(actionDisplayDict()));
+   // connect(ui->actiondisplayDict, SIGNAL(triggered()), this, SLOT(actionDisplayDict()));
     connect(ui->actionreadFromFile, SIGNAL(triggered()), this, SLOT(actionReadFromFile()));
     connect(ui->actionreadFromInput, SIGNAL(triggered()), this, SLOT(actionReadFromInput()));
 
@@ -436,10 +421,10 @@ void MainWindow::actionReadDict(){
     wdg_readDict->show();
 }
 
-void MainWindow::actionDisplayDict(){
-    QWidget *wdg_displayDict = new displayDict;
-    wdg_displayDict->show();
-}
+//void MainWindow::actionDisplayDict(){
+//    QWidget *wdg_displayDict = new displayDict;
+//    wdg_displayDict->show();
+//}
 void MainWindow::actionReadFromFile(){
     QWidget *wdg_readFromFile = new readFromFile;
     connect(wdg_readFromFile, SIGNAL(sendReadFromFile(char *, int , char *)), this, SLOT(getReadFromFile(char *, int, char *)));
@@ -447,16 +432,12 @@ void MainWindow::actionReadFromFile(){
 }
 void MainWindow::actionReadFromInput(){
     QWidget *wdg_readFromInput = new readFromInput;
+    qDebug() << "ds";
+    connect(wdg_readFromInput, SIGNAL(sendReadFromInput(char *, int, char *)), this, SLOT(getReadFromInput(char*,int,char*)));
+    qDebug() << "dss";
     wdg_readFromInput->show();
 }
 
-void MainWindow::on_test_clicked()
-{
-    QWidget *wdg = new addNewWord;
-    wdg->show();
-    ui->renewDict->hide();
-    ui->update_info->setText(tr("更新词典完毕"));
-}
 
 // menu 1 item 1    add new word
 void MainWindow::getAddNewWord(char * newWord) {
@@ -525,28 +506,120 @@ void MainWindow::getDictPath(char *value) {
 }
 
 void MainWindow::getReadFromFile(char * resolveFilePath, int saveOrNot, char * saveFile) {
+    ui->textEdit->show();
+
+    QString qString2 = QString(str2qstr(std::string("词典树构建成功，共计构建时间：%1s"))).arg(strlen("你好"));
+    qDebug() << qString2;
+
     char result[10000];
     int fgets_count = 0;
     qDebug() << tr(resolveFilePath);
     qDebug() << tr(saveFile);
 
-    saveOrNot = 1;
     QString qString = QString(str2qstr(std::string("%1"))).arg(saveOrNot);
     qDebug() << qString;
-    if (strlen(saveFile) == 0) {
-        saveOrNot = 0;
-    }
+    saveOrNot = 1;  //先保存成临时文件
     qDebug() << qString;
     std::ifstream fin(resolveFilePath);
     const int LINE_LENGTH = 10000;
     char str[LINE_LENGTH];
+
+    if (strlen(saveFile) == 0) {
+        saveOrNot = 0;
+    } else {
+        saveOrNot = 1;
+    }
+    int temp = 1;
     if (saveOrNot) {
         remove(saveFile);
+    } else {
+        temp ^= saveOrNot;
+        saveOrNot ^= temp;
+        temp ^= saveOrNot;
+        saveFile = (char *)malloc(sizeof(char) * 200);
+        strcpy(saveFile, "/Users/petnakanojo/c_design/tempSave.txt");
     }
     while(fin.getline(str,LINE_LENGTH) )
     {
-        qDebug() << str;
+        str[strlen(str) + 1] = '\0';
+        str[strlen(str)] = '\n';
         matchUserInput(root, str, maxLengthInDict, saveOrNot, saveFile);
+    }
+    fin.close();
+    std::ifstream t;
+    int length;
+    t.open(saveFile);      // open input file
+    t.seekg(0, std::ios::end);    // go to the end
+    length = t.tellg();           // report location (this is the length)
+    t.seekg(0, std::ios::beg);    // go back to the beginning
+    char buffer[length];    // allocate memory for a buffer of appropriate dimension
+    t.read(buffer, length);       // read the whole file into the buffer
+    t.close();                    // close file handle
+    //ui->plainTextEdit->setPlainText(tr(buffer));
+    buffer[length] = '\0';
+    ui->textEdit->setText(tr(buffer));
+    saveOrNot = temp;
+    qDebug() << buffer;
+    if (saveOrNot == 0) {
+        remove(saveFile);
+    }
+
+}
+
+void MainWindow::getReadFromInput(char * string, int saveOrNot, char * saveFile) {
+    ui->textEdit->show();
+
+    qDebug() << saveFile;
+    char input[10000];
+    char str[10000];
+    int LINE_LENGTH = 10000;
+    std::FILE * fp;
+    char tempFile[100] = "/Users/petnakanojo/c_design/tempFile.txt";
+    fp = std::fopen(tempFile, "w+");
+    std::fprintf(fp, "%s", string);
+    std::fclose(fp);
+
+    std::ifstream fin(tempFile);
+
+    int temp = 1;
+    if (saveOrNot) {
+        remove(saveFile);
+    } else {
+        temp ^= saveOrNot;
+        saveOrNot ^= temp;
+        temp ^= saveOrNot;
+        saveFile = (char *)malloc(sizeof(char) * 200);
+        strcpy(saveFile, "/Users/petnakanojo/c_design/tempSave.txt");
+    }
+    qDebug() <<"saveFile done";
+    qDebug() << saveFile;
+    while(fin.getline(str,LINE_LENGTH) )
+    {
+        //qDebug() << str;
+        str[strlen(str) + 1] = '\0';
+        str[strlen(str)] = '\n';
+       // qDebug() << str;
+        matchUserInput(root, str, maxLengthInDict, saveOrNot, saveFile);
+    }
+    fin.close();
+    qDebug() << "fin.close";
+
+    std::ifstream t;
+    int length;
+    t.open(saveFile);      // open input file
+    t.seekg(0, std::ios::end);    // go to the end
+    length = t.tellg();           // report location (this is the length)
+    t.seekg(0, std::ios::beg);    // go back to the beginning
+    char buffer[length];    // allocate memory for a buffer of appropriate dimension
+    t.read(buffer, length);       // read the whole file into the buffer
+    t.close();                    // close file handle
+    //ui->plainTextEdit->setPlainText(tr(buffer));
+    buffer[length] = '\0';
+    ui->textEdit->setText(tr(buffer));
+    qDebug() << buffer;
+    saveOrNot = temp;
+    if (saveOrNot == 0) {
+        remove(saveFile);
     }
 }
 
@@ -560,6 +633,7 @@ void MainWindow::on_renewDict_ok_btn_clicked()
     root = createTrieTreeRoot();
     buildDict(root, dictFile);
     maxLengthInDict = maxLength(dictFile);
+    ui->update_info->setText("");
 }
 
 void MainWindow::on_renewDict_cancel_btn_clicked()

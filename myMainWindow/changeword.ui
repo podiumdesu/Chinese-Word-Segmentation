@@ -10,6 +10,18 @@
     <height>300</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -31,7 +43,7 @@
     <rect>
      <x>40</x>
      <y>80</y>
-     <width>311</width>
+     <width>321</width>
      <height>41</height>
     </rect>
    </property>
@@ -72,7 +84,7 @@
     <rect>
      <x>40</x>
      <y>130</y>
-     <width>311</width>
+     <width>321</width>
      <height>41</height>
     </rect>
    </property>
@@ -112,24 +124,14 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>280</y>
-     <width>141</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>欢迎使用中文分词系统！</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
      <x>140</x>
-     <y>290</y>
-     <width>141</width>
+     <y>280</y>
+     <width>131</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;.SF NS Text&quot;;</string>
    </property>
    <property name="text">
     <string>欢迎使用中文分词系统！</string>

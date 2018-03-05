@@ -15,6 +15,14 @@ public:
     explicit readFromInput(QWidget *parent = 0);
     ~readFromInput();
 
+private slots:
+    void on_readFromInput_cancel_btn_clicked();
+
+    void on_readFromInput_ok_btn_clicked();
+
+signals:
+    void sendReadFromInput(char *, int , char *);
+
 private:
     Ui::readFromInput *ui;
 };
