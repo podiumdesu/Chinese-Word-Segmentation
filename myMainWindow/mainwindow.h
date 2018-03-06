@@ -33,6 +33,10 @@ private slots:
     void getRemoveWord(char *);
     void getReadFromFile(char *, int, char *);
     void getReadFromInput(char *, int, char *);
+    void on_getTextEdit_clicked();
+
+    void on_removeTextEdit_clicked();
+
 private:
    // void on_actionaddNewWord_triggered();
 

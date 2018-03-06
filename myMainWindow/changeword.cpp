@@ -6,6 +6,7 @@ changeWord::changeWord(QWidget *parent) :
     ui(new Ui::changeWord)
 {
     ui->setupUi(this);
+    setWindowTitle(tr("修改词条"));
 }
 
 changeWord::~changeWord()

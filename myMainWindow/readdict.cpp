@@ -8,6 +8,7 @@ readDict::readDict(QWidget *parent) :
     ui(new Ui::readDict)
 {
     ui->setupUi(this);
+    setWindowTitle(tr("读取词典"));
 }
 
 readDict::~readDict()

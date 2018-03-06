@@ -6,6 +6,7 @@ removeWord::removeWord(QWidget *parent) :
     ui(new Ui::removeWord)
 {
     ui->setupUi(this);
+    setWindowTitle(tr("删除词条"));
 }
 
 removeWord::~removeWord()

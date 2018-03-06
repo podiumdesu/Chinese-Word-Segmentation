@@ -9,6 +9,7 @@ readFromInput::readFromInput(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    setWindowTitle(tr("手动输入"));
     ui->textEdit_readFromInput->setPlaceholderText("输入想要处理的段落");
     ui->lineEdit_saveReadFromInput->setPlaceholderText("输入结果的保存文件名");
 

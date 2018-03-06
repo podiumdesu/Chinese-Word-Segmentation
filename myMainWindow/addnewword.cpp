@@ -11,6 +11,8 @@ addNewWord::addNewWord(QWidget *parent) :
 //       testpalette.setColor(QPalette::Background, QColor(255,0,0));
 //       ui->pushButton->setPalette(testpalette);
     ui->setupUi(this);
+    setWindowTitle(tr("添加新词条"));
+
 }
 
 addNewWord::~addNewWord() {

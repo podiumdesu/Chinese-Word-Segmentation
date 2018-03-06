@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>872</width>
-    <height>561</height>
+    <width>881</width>
+    <height>627</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>460</y>
+      <y>520</y>
       <width>659</width>
       <height>78</height>
      </rect>
@@ -55,6 +55,9 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLabel" name="label">
+           <property name="styleSheet">
+            <string notr="true">color: white;</string>
+           </property>
            <property name="text">
             <string>监测到词典改动，是否更新？                  </string>
            </property>
@@ -62,6 +65,12 @@
          </item>
          <item>
           <widget class="QPushButton" name="renewDict_ok_btn">
+           <property name="styleSheet">
+            <string notr="true">background-color: transparent;
+color: rgba(255,255,255, 0.8);
+border: 0.5px solid rgba(255,255,255,0.8);
+border-radius: 8%;</string>
+           </property>
            <property name="text">
             <string>是</string>
            </property>
@@ -69,6 +78,12 @@
          </item>
          <item>
           <widget class="QPushButton" name="renewDict_cancel_btn">
+           <property name="styleSheet">
+            <string notr="true">background-color: transparent;
+color: rgba(255,255,255, 0.8);
+border: 0.5px solid rgba(255,255,255,0.8);
+border-radius: 8%;</string>
+           </property>
            <property name="text">
             <string>否</string>
            </property>
@@ -84,7 +99,7 @@
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>480</y>
+      <y>530</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -107,14 +122,15 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
-      <width>831</width>
-      <height>441</height>
+      <y>320</y>
+      <width>841</width>
+      <height>221</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:transparent; 
-font: 75 15pt &quot;Gill Sans&quot;;</string>
+     <string notr="true">background-color: rgba(0,0,0,0.1);
+font: 75 15pt &quot;Gill Sans&quot;;
+color: white;</string>
     </property>
     <property name="html">
      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -124,13 +140,73 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Helvetica Neue'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+   <widget class="QTextEdit" name="textEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>841</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0,0,0,0.1);
+font: 75 15pt &quot;Gill Sans&quot;;
+color: white;</string>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Gill Sans'; font-size:15pt; font-weight:72; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Helvetica Neue'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="getTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>270</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+color: rgba(255,255,255, 0.8);
+border: 0.5px solid rgba(255,255,255,0.8);
+border-radius: 8%;</string>
+    </property>
+    <property name="text">
+     <string>一键分词</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removeTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>270</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+color: rgba(255,255,255, 0.8);
+border: 0.5px solid rgba(255,255,255,0.8);
+border-radius: 8%;</string>
+    </property>
+    <property name="text">
+     <string>清空</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>872</width>
+     <width>881</width>
      <height>22</height>
     </rect>
    </property>

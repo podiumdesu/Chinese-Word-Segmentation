@@ -8,6 +8,7 @@ readFromFile::readFromFile(QWidget *parent) :
     ui(new Ui::readFromFile)
 {
     ui->setupUi(this);
+    setWindowTitle(tr("导入待处理文件"));
     ui->lineEdit_saveFilePath->setPlaceholderText("输入结果的保存文件名");
     //connect(ui->checkBox, SIGNAL(stateChanged(int)), this, SLOT(onStateChanged(void)));
 
