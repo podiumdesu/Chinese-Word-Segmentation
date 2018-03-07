@@ -2,6 +2,15 @@
 // Created by PetnaKanojo on 14/02/2018.
 //
 #include "mystd.h"
+
+/*************************************
+ Function: maxLength
+ Description: calculate the max length of the word
+ Input:
+        fileName: dict
+ Return:
+        maxlength (int)
+***************************************/
 int maxLength(char *fileName) {
     char result[1000];
     int maxlength = 0;

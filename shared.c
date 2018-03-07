@@ -5,6 +5,13 @@
 // shared and common functions
 #include "mystd.h"
 #include "mylib.h"
+
+char * charcpy(char * str) {
+    char * tmpStr = (char *)malloc(sizeof(char) * 4);
+    strncpy(tmpStr, str, 3);
+    tmpStr[3] = '\0';
+    return tmpStr;
+}
 void showAllContent(char * filename) {
     FILE *fp;
     char string[100];
@@ -29,6 +36,16 @@ char * my_strncpy(char * des, char * src, int length) {
     des[length * WORDCHAR] = '\0';
     return des;
 }
+
+/*************************************
+ Function: letterLength
+ Description: calculate the length of characters
+ Input:
+        string
+ Return:
+        length of string
+
+***************************************/
 int letterLength(char * string) {
     return (strlen(string) - 1) / 3;
 }
@@ -44,6 +61,14 @@ char * resolveInputDictName(char * string) {
     return string;
 }
 
+/*************************************
+ Function: pressAnyKeyToContinue
+ Description: press key to continue
+ Input:
+        void
+ Return:
+        void
+***************************************/
 void pressAnyKeyToContinue(void) {
     printf("\n请按任意键继续...");
     getchar();

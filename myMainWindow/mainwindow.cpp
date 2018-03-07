@@ -23,6 +23,7 @@
 
 
 Node root = createTrieTreeRoot();
+
 char dictFile[1000];
 int dictHasChanged = 0;
 char resolveFile[1000];
@@ -93,7 +94,7 @@ int matchStringForMAX(Node root, char * resolveString, int length, int saveOrNot
             //resolveString += letterLength(tempStr) * WORDCHAR;    //已经匹配完的剔除，对于剩下的字符串继续
             ////printf("%s|", tempStr);
             if (saveOrNot) {
-                ////qDebug() << tempStr;
+                //////qDebug() << tempStr;
                 std::fprintf(fp, "%s |", tempStr);
                 std::fclose(fp);
             }
@@ -101,7 +102,7 @@ int matchStringForMAX(Node root, char * resolveString, int length, int saveOrNot
         } else { //如果目前tempStr不能匹配
             if (length == 1) { //如果现在长度为1，词典匹配失败，直接输出
                 if (saveOrNot) {
-                    ////qDebug() << tempStr;
+                    //////qDebug() << tempStr;
                     std::fprintf(fp, "%s |", tempStr);
                     std::fclose(fp);
                 }
@@ -136,13 +137,13 @@ void matchUserInput(Node root, char * string, int maxLength, int fileOrNot, char
 
                         std::fprintf(fp, " | ");
                         std::fprintf(fp, "%c", *string);
-                        //qDebug() << *string;
+                        ////qDebug() << *string;
 
                         std::fclose(fp);
                     }
                     //printf("||%c", *string);
                 } else {
-                    qDebug() << flag;
+                    //qDebug() << flag;
 
                     if (flag == 3) {
                         fp = std::fopen(saveFile, "a");
@@ -153,7 +154,7 @@ void matchUserInput(Node root, char * string, int maxLength, int fileOrNot, char
                         fp = std::fopen(saveFile, "a");
 
                         std::fprintf(fp, "%c", *string);
-                        //qDebug() << string;
+                        ////qDebug() << string;
 
                         std::fclose(fp);
                     }
@@ -168,7 +169,7 @@ void matchUserInput(Node root, char * string, int maxLength, int fileOrNot, char
 
                         std::fprintf(fp, " | ");
                         std::fprintf(fp, "%c", *string);
-                        //qDebug() << *string;
+                        ////qDebug() << *string;
                         std::fclose(fp);
                     }
                     //printf("|%c", *string);
@@ -182,7 +183,7 @@ void matchUserInput(Node root, char * string, int maxLength, int fileOrNot, char
                         fp = std::fopen(saveFile, "a");
 
                         std::fprintf(fp, "%c", *string);
-                        //qDebug() << *string;
+                        ////qDebug() << *string;
                         std::fclose(fp);
                     }
                     //printf("%c", *string);
@@ -387,7 +388,7 @@ bool findNode (Node root, char * string) {
 status addNewNode (Node root, char * string, char * fileName) {
     FILE *fp;
     if ((fp = fopen(fileName, "a")) == NULL) {
-        //////qDebug() << "addNewNode: File open wrong";
+        ////////qDebug() << "addNewNode: File open wrong";
         ////printf("FILE: open %s wrong", fileName);
         return WRONG;
     } else {
@@ -435,15 +436,21 @@ status removeNode (Node root, char * string, char * fileName) {
         return WRONG;
     } else {
         while(fgets(result, 100, fp) != NULL) {
-            result[strlen(result) - 1] ='\0';
+            if (rowNum < 217145) {
+                result[strlen(result) - 2] ='\0';
+            } else {
+                result[strlen(result) - 1] ='\0';
+            }
             if (strcmp(result, string) == 0) {
                 ////printf("%s row num is: %d\n", string , rowNum);
                 break;
             }
             rowNum++;
         }
+        std::fclose(fp);
         QString qString;
         qString = QString(str2qstr(std::string("删除词条的行数在 %1 行"))).arg(rowNum);
+        //qDebug() << qString;
         ////printf("%d\n", rowNum);
         Delete(fileName, rowNum);
         ////printf("REMOVE DONE\n");
@@ -452,16 +459,17 @@ status removeNode (Node root, char * string, char * fileName) {
 
 }
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     //setWindowTitle(tr("欢迎使用中文分词系统"));
     ui->setupUi(this);
     setWindowTitle(tr("欢迎使用中文分词系统～"));
     //remove(ui->renewDict);
     ui->renewDict->hide();
+
     //ui->textEdit->hide();
 
     //修改背景图
@@ -478,6 +486,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(ui->actiondisplayDict, SIGNAL(triggered()), this, SLOT(actionDisplayDict()));
     connect(ui->actionreadFromFile, SIGNAL(triggered()), this, SLOT(actionReadFromFile()));
     connect(ui->actionreadFromInput, SIGNAL(triggered()), this, SLOT(actionReadFromInput()));
+//    char llllll[100] = "/Users/petnakanojo/Documents/github/c_design/new.txt";
+//    buildDict(root, llllll);
+
 }
 
 void MainWindow::initView()
@@ -545,9 +556,9 @@ void MainWindow::actionReadFromFile(){
 }
 void MainWindow::actionReadFromInput(){
     QWidget *wdg_readFromInput = new readFromInput;
-    ////qDebug() << "ds";
+    //////qDebug() << "ds";
     connect(wdg_readFromInput, SIGNAL(sendReadFromInput(char *, int, char *)), this, SLOT(getReadFromInput(char*,int,char*)));
-    ////qDebug() << "dss";
+    //////qDebug() << "dss";
     wdg_readFromInput->show();
 }
 
@@ -567,7 +578,7 @@ void MainWindow::getAddNewWord(char * newWord) {
 }
 
 void MainWindow::getRemoveWord(char * removeWord) {
-    ////qDebug() << tr(removeWord);
+    //////qDebug() << tr(removeWord);
     if (findNode(root, removeWord) == false) {
         QMessageBox::information(this, tr("Information"), "该词不在词典中哦");
     } else {
@@ -581,8 +592,8 @@ void MainWindow::getRemoveWord(char * removeWord) {
 }
 
 void MainWindow::getChangeWord(char * oldWord, char * newWord) {
-    ////qDebug() << tr(oldWord);
-    ////qDebug() << tr(newWord);
+    //////qDebug() << tr(oldWord);
+    //////qDebug() << tr(newWord);
     if (findNode(root, oldWord) == false) {
         QString qString = QString(str2qstr(std::string("%1 不在词典中哦"))).arg(oldWord);
         QMessageBox::information(this, tr("Information"), qString);
@@ -611,7 +622,7 @@ void MainWindow::getDictPath(char *value) {
 
     } else {
         QString qString;
-        ////qDebug() << time;
+        //////qDebug() << time;
         maxLengthInDict = maxLength(dictFile);
         qString = QString(str2qstr(std::string("词典树构建成功，共计构建时间：%1s"))).arg(time);
         QMessageBox::information(this, tr("Information"), qString);
@@ -622,17 +633,17 @@ void MainWindow::getReadFromFile(char * resolveFilePath, int saveOrNot, char * s
     ui->textEdit->show();
 
     QString qString2 = QString(str2qstr(std::string("词典树构建成功，共计构建时间：%1s"))).arg(strlen("你好"));
-    ////qDebug() << qString2;
+    //////qDebug() << qString2;
 
     char result[10000];
     int fgets_count = 0;
-    ////qDebug() << tr(resolveFilePath);
-    ////qDebug() << tr(saveFile);
+    //////qDebug() << tr(resolveFilePath);
+    //////qDebug() << tr(saveFile);
 
     QString qString = QString(str2qstr(std::string("%1"))).arg(saveOrNot);
-    ////qDebug() << qString;
+    //////qDebug() << qString;
     saveOrNot = 1;  //先保存成临时文件
-    ////qDebug() << qString;
+    //////qDebug() << qString;
     std::ifstream fin(resolveFilePath);
     const int LINE_LENGTH = 10000;
     char str[LINE_LENGTH];
@@ -682,7 +693,7 @@ void MainWindow::getReadFromFile(char * resolveFilePath, int saveOrNot, char * s
     ui->textEdit_2->setText(tr(buffer));
     saveOrNot = temp;
 
-    ////qDebug() << buffer;
+    //////qDebug() << buffer;
     if (saveOrNot == 0) {
         remove(saveFile);
     }
@@ -692,7 +703,7 @@ void MainWindow::getReadFromFile(char * resolveFilePath, int saveOrNot, char * s
 void MainWindow::getReadFromInput(char * string, int saveOrNot, char * saveFile) {
     ui->textEdit->show();
 
-    ////qDebug() << saveFile;
+    //////qDebug() << saveFile;
     char input[10000];
     char str[10000];
     int LINE_LENGTH = 10000;
@@ -714,18 +725,18 @@ void MainWindow::getReadFromInput(char * string, int saveOrNot, char * saveFile)
         saveFile = (char *)malloc(sizeof(char) * 200);
         strcpy(saveFile, "/Users/petnakanojo/c_design/tempSave.txt");
     }
-    ////qDebug() <<"saveFile done";
-    ////qDebug() << saveFile;
+    //////qDebug() <<"saveFile done";
+    //////qDebug() << saveFile;
     while(fin.getline(str,LINE_LENGTH) )
     {
-        //////qDebug() << str;
+        ////////qDebug() << str;
         str[strlen(str) + 1] = '\0';
         str[strlen(str)] = '\n';
-       // ////qDebug() << str;
+       // //////qDebug() << str;
         matchUserInput(root, str, maxLengthInDict, saveOrNot, saveFile);
     }
     fin.close();
-    ////qDebug() << "fin.close";
+    //////qDebug() << "fin.close";
 
     std::ifstream t;
     int length;
@@ -738,7 +749,7 @@ void MainWindow::getReadFromInput(char * string, int saveOrNot, char * saveFile)
     t.close();                    // close file handle
     buffer[length] = '\0';
     ui->textEdit->setText(tr(buffer));
-    ////qDebug() << buffer;
+    //////qDebug() << buffer;
 
     t.open(tempFile);      // open input file
     t.seekg(0, std::ios::end);    // go to the end
@@ -778,11 +789,11 @@ void MainWindow::on_getTextEdit_clicked()
 {
     int saveOrNot = 1;
     QString str1 = ui->textEdit_2->toPlainText();
-    //qDebug() << str1;
+    ////qDebug() << str1;
     QByteArray ba = str1.toUtf8();
     char * string = ba.data();
 
-    ////qDebug() << saveFile;
+    //////qDebug() << saveFile;
     char input[10000];
     char str[10000];
     int LINE_LENGTH = 10000;
@@ -798,18 +809,18 @@ void MainWindow::on_getTextEdit_clicked()
     char saveFile[200];
     strcpy(saveFile, "/Users/petnakanojo/c_design/tempSave.txt");
 
-    ////qDebug() <<"saveFile done";
-    ////qDebug() << saveFile;
+    //////qDebug() <<"saveFile done";
+    //////qDebug() << saveFile;
     while(fin.getline(str,LINE_LENGTH) )
     {
-        //////qDebug() << str;
+        ////////qDebug() << str;
         str[strlen(str) + 1] = '\0';
         str[strlen(str)] = '\n';
-       // ////qDebug() << str;
+       // //////qDebug() << str;
         matchUserInput(root, str, maxLengthInDict, saveOrNot, saveFile);
     }
     fin.close();
-    ////qDebug() << "fin.close";
+    //////qDebug() << "fin.close";
 
     std::ifstream t;
     int length;
@@ -823,7 +834,7 @@ void MainWindow::on_getTextEdit_clicked()
     buffer[length] = '\0';
     ui->textEdit->show();
     ui->textEdit->setText(tr(buffer));
-    ////qDebug() << buffer;
+    //////qDebug() << buffer;
 
 //    t.open(tempFile);      // open input file
 //    t.seekg(0, std::ios::end);    // go to the end

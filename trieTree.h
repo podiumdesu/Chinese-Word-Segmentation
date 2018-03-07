@@ -35,7 +35,7 @@ status buildDict(Node root, char * fileName);
 void buildTrieTree(Node root, char * string);
 Node createTrieTreeRoot();
 Node createTrieTree(char * string);
-char * charcpy(char * str);
+
 
 //void writeTofile(Node root, char * fileName);
 /*************************************

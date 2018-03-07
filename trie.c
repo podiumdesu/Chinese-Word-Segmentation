@@ -4,13 +4,7 @@
 
 #include "mystd.h"
 #include "trieTree.h"
-
-/*************************************
- Function:
- Description:
- Input:
- Return:
-***************************************/
+#include "mylib.h"
 
 /*************************************
  Function: initTrieTreeNode
@@ -52,6 +46,15 @@ Node updateTreeNode(Node node, char *string) {
     return node;
 }
 
+/*************************************
+ Function: buildTrieTree
+ Description: according to the string, to build up the trie tree
+ Input:
+        root: trie tree root
+        string: string to insert the tree
+ Return:
+        void
+***************************************/
 void buildTrieTree(Node root, char * string) {
     while((*string != '\0') && (*string != '\n') && (*string != '\r'))  {    // whether it is a whole word
         Node child;
@@ -76,12 +79,7 @@ Node createTrieTreeRoot() {
     return root;
 }
 
-char * charcpy(char * str) {
-    char * tmpStr = (char *)malloc(sizeof(char) * 4);
-    strncpy(tmpStr, str, 3);
-    tmpStr[3] = '\0';
-    return tmpStr;
-}
+
 
 /*************************************
  Function: findNode
@@ -124,7 +122,16 @@ bool findNode (Node root, char * string) {
         return (root->isWord) ? true : false;
     }
 }
-
+/*************************************
+ Function: addNewWord
+ Description: addNewWord to the Trie Tree && dict
+ Input:
+        root: trie tree root
+        string: word to add
+        fileName: dictFile Name
+ Return:
+        void
+***************************************/
 void addNewNode (Node root, char * string, char * fileName) {
     FILE *fp;
     if ((fp = fopen(fileName, "a")) == NULL) {
@@ -139,6 +146,7 @@ void addNewNode (Node root, char * string, char * fileName) {
     }
 
 }
+
 
 void Delete(char* filename, int n){
     FILE *fp1, *fp2;
@@ -162,6 +170,17 @@ void Delete(char* filename, int n){
     rename("temp.txt", filename);
 }
 
+/*************************************
+ Function: removeWord
+ Description: removeWord from the Trie Tree && dict
+ Input:
+        root: trie tree root
+        string: word to add
+        fileName: dictFile Name
+ Return:
+        void
+ Notes: use function Delete()
+***************************************/
 void removeNode (Node root, char * string, char * fileName) {
     FILE *fp;
     char result[100];
@@ -170,7 +189,12 @@ void removeNode (Node root, char * string, char * fileName) {
         printf("FILE: %s not open\n", fileName);
     } else {
         while(fgets(result, 100, fp) != NULL) {
-            result[strlen(result) - 1] ='\0';
+            // 处理result
+            if (rowNum < 217145) {
+                result[strlen(result) - 2] ='\0';
+            } else {
+                result[strlen(result) - 1] ='\0';
+            }
             if (strcmp(result, string) == 0) {
                 //printf("%s row num is: %d\n", string , rowNum);
                 break;
@@ -184,36 +208,3 @@ void removeNode (Node root, char * string, char * fileName) {
 
 }
 
-//
-//static char printWord[100];
-//static char tempWord[100];
-//void writeNode(Node root, char * printWord) {
-//    strcat(printWord, root->word);
-//    //printf("%s", printWord);
-//    if (root->childNum > 0 && (!root->isWord)) {
-//        for (int i = 0; i < root->childNum; i++) {
-//            //end = (i == root->childNum - 1);
-//            strcpy(tempWord, printWord);
-//            writeNode(root->child[i], tempWord);
-//        }
-//    } else if (root->childNum > 0 && root->isWord) {
-//        printf("%s\n", printWord);
-//        for (int i = 0; i < root->childNum; i++) {
-//            //end = (i == root->childNum - 1);
-//            strcpy(tempWord, printWord);
-//            writeNode(root->child[i], tempWord);
-//        }
-//    } else if (root->childNum <= 0 && root->isWord) {
-//        printf("%s\n", printWord);
-//        printWord[0] = '\0';
-//    } else {
-//    }
-//}
-//void writeTofile(Node root, char * fileName) {
-//    bool end = false;
-//    printf("hello, this is test writing \n");
-//    for (int i = 0; i < root->childNum; i++) {
-//        writeNode(root->child[i], printWord);
-//    }
-//
-//};

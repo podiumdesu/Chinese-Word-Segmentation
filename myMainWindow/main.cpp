@@ -4,9 +4,7 @@
 
 
 // my function head files
-#include "mylib.h"
-#include "mystd.h"
-#include "trieTree.h"
+
 
 
 #include "addnewword.h"
